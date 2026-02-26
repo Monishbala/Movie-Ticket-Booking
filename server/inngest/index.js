@@ -14,7 +14,7 @@ const syncUserCreation = inngest.createFunction(
             _id:id,
             email:email_addresses[0].email_address,
             name:first_name +" "+last_name,
-            image:imgae_url
+            image:image_url
         }
         await User.create(userData);
     }
@@ -35,12 +35,12 @@ const syncUserUpdation = inngest.createFunction(
     {id:"update-user-from-clerk"},
     {event:"clerk/user.updated"},
     async({event})=>{
-        const {id,first_name,last_name,imgae_url,email_addresses}=event.data;
+        const {id,first_name,last_name,image_url,email_addresses}=event.data;
         const userData = {
             _id:id,
             email:email_addresses[0].email_address,
             name:first_name +" "+last_name,
-            image:imgae_url
+            image:image_url
         }
         await User.findByIdAndUpdate(id,userData);
     }
