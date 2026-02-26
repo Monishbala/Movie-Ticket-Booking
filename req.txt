@@ -1,0 +1,6 @@
+Ticket-Booking-System
+ =>Clerk = User Management System
+ =>React-router-dom = Navigation
+ =>React-hot-toast = Notification
+ =>Lucide-React = Icons
+  =>Inngest 
