@@ -5,9 +5,11 @@ import Loading from '../../Components/Loading';
 import Title from '../../Components/Admin/Title';
 import BlurCircle from '../../Components/BlurCircle';
 import { dateFormat } from '../../lib/dateFormat';
+import { useAppContext } from '../../Context/appContext';
+import toast from 'react-hot-toast';
 
 const Dashboard = () => {
-
+    const {axios,image_base_url,getToken,user}=useAppContext();
     const currency=import.meta.env.VITE_CURRENCY;
 
     const [dashboardData,setDashboardData ]= useState({
@@ -27,13 +29,33 @@ const Dashboard = () => {
     ]
 
     const fetchDashboardData = async()=>{
-        setDashboardData(dummyDashboardData)
-        setLoading(false);
+        // setDashboardData(dummyDashboardData)
+        try {
+            const {data}=await axios.get("/api/admin/dashboard",{
+                headers:{
+                    Authorization:`Bearer ${await getToken()}`
+                }
+            })
+            if(data.success)
+            {
+                setDashboardData(data.dashboardData);
+                setLoading(false);
+            }
+            else{
+                toast.error(data.message)
+            }
+        } catch (error) {
+            toast.error("Error fetching dashboard data",error)
+        }
+        
     }
 
     useEffect(()=>{
-        fetchDashboardData()
-    },[])
+        if(user)
+        {
+               fetchDashboardData()
+        }
+    },[user])
   return !loading ?(
     <>
       <Title text1="Admin" text2="Dashboard" />
@@ -60,7 +82,7 @@ const Dashboard = () => {
         {dashboardData.activeShows.map((show)=>(
             <div key={show._id} className='w-55 rounded-lg overflow-hidden h-full pb-3 bg-primary/10 border border-primary/20
             hover:-translate-y-1 transition duration-300'>
-                <img src={show.movie.poster_path} alt='' className='h-60 w-full object-cover' />
+                <img src={image_base_url + show.movie.poster_path} alt='' className='h-60 w-full object-cover' />
                 <p className='font-medium p-2 truncate'>{show.movie.title}</p>
                 <div className='flex items-center justify-between px-2'>
                     <p className='text-lg font-medium'>{currency} {show.showPrice}</p>
