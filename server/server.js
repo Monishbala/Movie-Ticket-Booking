@@ -1,10 +1,12 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import express from "express"
 import cors from "cors"
-import dotenv from 'dotenv';
+
 import { clerkMiddleware } from '@clerk/express'
 import { serve } from "inngest/express";
 import { inngest, functions } from "./inngest/index.js"
-dotenv.config();
+
 import { connectDB } from "./config/db.js";
 import showRouter from "./Routes/showRoutes.js";
 import bookingRouter from "./Routes/bookingRoutes.js";
