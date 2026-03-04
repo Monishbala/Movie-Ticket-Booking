@@ -38,8 +38,11 @@ const SeatLayout = () => {
   const getOccupiedSeats=async()=>{
     try {
       const {data}=await axios.get(`api/booking/seats/${selectedTime.showId}`);
+      
       if(data.success)
       {
+       
+        
         setOccupiedSeats(data.occupiedSeats);
       }
       else{
