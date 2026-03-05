@@ -3,6 +3,7 @@ import Movie from "../models/Movie.js";
 import Show from "../models/Shows.js";
 
 import axiosRetry from 'axios-retry';
+import { inngest } from "../inngest/index.js";
 
 axiosRetry(axios, {
   retries: 3,
@@ -83,6 +84,14 @@ export const addShow = async(req,res)=>{
         {
             await Show.insertMany(showsToCreate);
         }
+
+        //trigger inngest
+        await inngest.send({
+            name:"app/show.added",
+            data:{
+                movieTitle:movie.title
+            }
+        })
 
         return res.json({success:true,message:"Show added successfully"})
     } catch (error) {
