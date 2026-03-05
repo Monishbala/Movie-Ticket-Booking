@@ -4,7 +4,7 @@ import Loading from '../../Components/Loading';
 import Title from '../../Components/Admin/Title';
 import { CheckIcon, DeleteIcon, StarIcon } from 'lucide-react';
 import { kConverter } from '../../lib/kConverter';
-import { useAppContext } from '../../Context/appContext';
+import { useAppContext } from '../../Context/AppContext.jsx';
 import toast from 'react-hot-toast';
 
 

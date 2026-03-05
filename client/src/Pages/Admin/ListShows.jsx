@@ -3,7 +3,7 @@ import { dummyShowsData } from '../../assets/assets';
 import Loading from '../../Components/Loading';
 import Title from '../../Components/Admin/Title';
 import { dateFormat } from '../../lib/dateFormat';
-import { useAppContext } from '../../Context/appContext';
+import { useAppContext } from '../../Context/AppContext.jsx';
 
 const ListShows = () => {
     const {axios,getToken,user}=useAppContext();

@@ -2,7 +2,7 @@ import React from 'react'
 import AdminNavbar from '../../Components/Admin/AdminNavbar'
 import AdminSidebar from '../../Components/Admin/AdminSidebar'
 import { Outlet } from 'react-router-dom'
-import { useAppContext } from '../../Context/appContext'
+import { useAppContext } from '../../Context/AppContext.jsx'
 import { useEffect } from 'react'
 import Loading from '../../Components/Loading'
 

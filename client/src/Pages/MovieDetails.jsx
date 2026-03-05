@@ -7,7 +7,7 @@ import timeFormat from '../lib/timeFormat';
 import DateSelect from '../Components/DateSelect';
 import MovieCard from '../Components/MovieCard';
 import Loading from '../Components/Loading';
-import { useAppContext } from '../Context/appContext';
+import { useAppContext } from '../Context/AppContext.jsx';
 import toast from 'react-hot-toast';
 
 const MovieDetails = () => {
