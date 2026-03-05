@@ -22,7 +22,7 @@ const MyBookings = () => {
       });
       if(data.success)
       {
-        console.log(data.bookings.movie);
+        console.log(data);
         
         setBookings(data.bookings);
       }
